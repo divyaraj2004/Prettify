@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Navbar from "./components/Navbar";
+import Textarea from "./components/Textarea";
+import React, { useState } from "react";
 
 function App() {
+  //it cheacks dark mode is enable or not
+  const [Mode, setMode] = useState("light");
+
+  const toggleMode = () => {
+    if (Mode === "light") {
+      setMode("dark");
+      document.body.style.background = "#3a4045";
+    } else {
+      setMode("light");
+      document.body.style.background = "white";
+    }
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+
+      <Navbar title="prettify.com" mode={Mode} toggleMode={toggleMode} />
+      <div className="container my-3">
+        <Textarea heading="Enter your Text"  mode={Mode}></Textarea>
+      </div>
+      </>   
   );
 }
 
